@@ -1,44 +1,35 @@
-# My Universal React Project
+# Mobile Flashcards Project
 
-<p>
-  <!-- iOS -->
-  <a href="https://itunes.apple.com/app/apple-store/id982107779">
-    <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  </a>
-  <!-- Android -->
-  <a href="https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=blankexample">
-    <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-  </a>
-  <!-- Web -->
-  <a href="https://docs.expo.io/workflow/web/">
-    <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
-  </a>
-</p>
+This project was built on the expo template of create-react-native-app. I used React Native for building its mobile interface and Redux for its state management.
 
-## 🚀 How to use
+## Platform
 
-- Install packages with `yarn` or `npm install`.
-  - If you have native iOS code run `npx pod-install`
-- Run `yarn start` to start the bundler.
-- Open the project in a React runtime to try it:
-  - iOS: [Client iOS](https://itunes.apple.com/app/apple-store/id982107779)
-  - Android: [Client Android](https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=blankexample)
-  - Web: Any web browser
+This is built for Android platform only. I developed it with the Expo Client on my Android phone.
 
-## Adding Native Code
+## How to start it
 
-This project can be run from a web browser or the Expo client app. You may find that you want to add more native code later on. You can do this by ejecting the project and rebuilding it yourself.
+To get started:
 
-- Run `yarn eject` to create the native projects.
-- You can still run your project in the web browser or Expo client, you just won't be able to access any new native modules you add.
+- install all project dependencies with `npm install`
+- start the development server with `npm start`
 
-## Publishing
+## What You're Getting
 
-- Deploy the native app to the App store and Play store using this guide: [Deployment](https://docs.expo.io/distribution/app-stores/).
-- Deploy the website using this guide: [Web deployment](https://docs.expo.io/distribution/publishing-websites/).
-
-## 📝 Notes
-
-- Learn more about [Universal React](https://docs.expo.io/).
-- See what API and components are [available in the React runtimes](https://docs.expo.io/versions/latest/).
-- Find out more about developing apps and websites: [Guides](https://docs.expo.io/guides/).
+```bash
+├── actions #action handlers for redux
+    ├── decks # action handler for different actions regarding the decks
+├── components
+    ├── Button.js # component for the buttons
+    ├── DeckCard.js # component for each deck card shown on the home page
+    ├── DeckListPage.js # component representing the home page with all the decks list
+    ├── IndividualDeckPage.js # component representing each deck's page
+    ├── NewDeckPage.js # component for the page that allows the user to post new decks
+    ├── NewQuestionPage.js # component for the page that allows the user to post new questions
+    ├── QuizPage.js # component containing the quiz page
+    ├── Quizzes.js # component handling the quizzes listing and their scores
+├── reducers # reducers for the decks
+├── utils # containing the helpers.js that handles the asyncstorage and the notifications
+├── App.js # the parent component handling the navigation and creation of Redux store
+├── package.json
+├── README.md # this file
+```
