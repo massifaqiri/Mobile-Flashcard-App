@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -6,7 +6,8 @@ import { LinearGradient } from 'expo-linear-gradient';
  * Represents each deck shown on the main page
  */
 function DeckCard(props) {
-  const { title, cardsNumber, navigation } = props;
+  const { title, cardsNumber, navigation, fadeIn, fadeOut } = props;
+  const animationFading = () => {};
   return (
     <LinearGradient
       colors={['#F27A54', '#A154F2']}
@@ -14,7 +15,15 @@ function DeckCard(props) {
       end={[0.5, 0.9]}
       style={styles.cardContainer}
     >
-      <TouchableOpacity onPress={() => navigation.navigate('Card', { title })}>
+      <TouchableOpacity
+        onPress={() => {
+          fadeOut();
+          setTimeout(() => {
+            navigation.navigate('Card', { title });
+            fadeIn();
+          }, 200);
+        }}
+      >
         <Text style={styles.deckTitle}>{title}</Text>
         <Text style={styles.deckSubTitle}>{cardsNumber} cards</Text>
       </TouchableOpacity>

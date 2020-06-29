@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet, Animated } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchDecks } from '../actions/decks';
 import { getDecks } from '../utils/helpers';
@@ -10,6 +10,26 @@ import DeckCard from './DeckCard';
  * @extends Component
  */
 class DeckListPage extends Component {
+  state = {
+    animation: new Animated.Value(1),
+  };
+
+  fadeOut = () => {
+    Animated.timing(this.state.animation, {
+      toValue: 0,
+      timing: 2000,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  fadeIn = () => {
+    Animated.timing(this.state.animation, {
+      toValue: 1,
+      timing: 200,
+      useNativeDriver: true,
+    }).start();
+  };
+
   componentDidMount() {
     const { dispatch } = this.props;
     getDecks().then(decks => {
@@ -20,11 +40,15 @@ class DeckListPage extends Component {
   }
 
   render() {
+    const animatedStyle = { opacity: this.state.animation };
     const { decks } = this.props;
     const objectIsEmpty = Object.keys(decks).length === 0;
     return (
       <SafeAreaView style={styles.container}>
-        <ScrollView contentContainerStyle={styles.scrollView}>
+        <Animated.ScrollView
+          contentContainerStyle={styles.scrollView}
+          style={animatedStyle}
+        >
           {!objectIsEmpty &&
             Object.keys(decks).map((deck, index) => (
               <DeckCard
@@ -32,9 +56,11 @@ class DeckListPage extends Component {
                 cardsNumber={decks[deck].questions.length}
                 navigation={this.props.navigation}
                 key={index}
+                fadeOut={this.fadeOut}
+                fadeIn={this.fadeIn}
               />
             ))}
-        </ScrollView>
+        </Animated.ScrollView>
       </SafeAreaView>
     );
   }
