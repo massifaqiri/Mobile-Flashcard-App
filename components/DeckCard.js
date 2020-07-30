@@ -6,8 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient';
  * Represents each deck shown on the main page
  */
 function DeckCard(props) {
-  const { title, cardsNumber, navigation, fadeIn, fadeOut } = props;
-  const animationFading = () => {};
+  const { title, cardsNumber, navigation } = props;
   return (
     <LinearGradient
       colors={['#F27A54', '#A154F2']}
@@ -17,11 +16,7 @@ function DeckCard(props) {
     >
       <TouchableOpacity
         onPress={() => {
-          fadeOut();
-          setTimeout(() => {
-            navigation.navigate('Card', { title });
-            fadeIn();
-          }, 200);
+          navigation.navigate('Card', { title });
         }}
       >
         <Text style={styles.deckTitle}>{title}</Text>
